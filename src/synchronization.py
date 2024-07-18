@@ -1,3 +1,5 @@
+import numpy as np
+from scipy.signal import resample
 def synchronize_signals(ecg_signal, ppg_signal, sampling_frequency_ecg, sampling_frequency_ppg):
     """
     Synchronize ECG and PPG signals.
