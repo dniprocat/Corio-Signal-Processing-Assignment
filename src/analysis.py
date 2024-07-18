@@ -1,5 +1,5 @@
 import numpy as np
-from scipy.signal import find_peaks
+from scipy.signal import find_peaks, stft
 
 
 def detect_sampling_freq(signal, bps, distance=None):
@@ -14,7 +14,7 @@ def detect_sampling_freq(signal, bps, distance=None):
     Returns:
         sampling_frequency (float): The detected sampling frequency.
     """
-    peaks, _ = find_peaks(signal, distance)
+    peaks, _ = find_peaks(signal, distance=distance)
     sum_interval = np.sum(np.diff(peaks))
     n = len(peaks)
     frequency = sum_interval / n / bps
@@ -31,5 +31,13 @@ def puls_loc(signal, distance=None):
     Returns:
         pulses (np.array): The detected pulses.
     """
-    pulses, _ = find_peaks(signal, distance)
+    pulses, _ = find_peaks(signal, distance=distance)
     return pulses
+
+
+def detect_outliers_stft(signal, fs, perc_threshold=75, nperseg=256):
+    f, t, Zxx = stft(x=signal, fs=fs, nperseg=nperseg)
+    magnitude = np.abs(Zxx)
+    threshold = np.percentile(magnitude, perc_threshold)
+    outliers = np.where(magnitude > threshold)[0]
+    return outliers
