@@ -1,6 +1,7 @@
 import numpy as np
 from scipy.signal import savgol_filter
 
+
 def calculate_snr(signal, noise_signal):
     """
     Calculate the Signal-to-Noise Ratio (SNR) of a signal.
@@ -18,7 +19,7 @@ def calculate_snr(signal, noise_signal):
     return snr
 
 
-def extract_noise(signal, method='simple'):
+def extract_noise(signal, method="simple"):
     """
     Extract noise from the signal using a specified method.
 
@@ -29,7 +30,7 @@ def extract_noise(signal, method='simple'):
     Returns:
     array-like: The extracted noise signal.
     """
-    if method == 'simple':
+    if method == "simple":
         # A simple method to extract noise is to subtract a smoothed version of the signal from the original signal
         smoothed_signal = savgol_filter(signal, window_length=51, polyorder=3)
         noise_signal = signal - smoothed_signal
