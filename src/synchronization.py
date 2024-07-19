@@ -13,6 +13,7 @@ def synchronize_signals(
         ppg_signal (array-like): The PPG signal data.
         sampling_frequency_ecg (int or float): The sampling frequency of the ECG signal in Hz.
         sampling_frequency_ppg (int or float): The sampling frequency of the PPG signal in Hz.
+
     Returns:
         resampled_ecg_signal (numpy array): The resampled ECG signal synchronized with the PPG signal.
         ppg_signal (numpy array): The original PPG signal.

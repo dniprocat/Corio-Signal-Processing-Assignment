@@ -24,18 +24,31 @@ def detect_sampling_freq(signal, bps, distance=None):
 def puls_loc(signal, distance=None):
     """
     Detect the location of pulses in a signal.
-    Args:
+
+    Parameters:
         signal (np.array): The signal array.
         distance (int or float): Most likely pulse distance.
 
     Returns:
-        pulses (np.array): The detected pulses.
+        pulses (np.array): Locations of the detected pulses.
     """
     pulses, _ = find_peaks(signal, distance=distance)
     return pulses
 
 
 def detect_outliers_stft(signal, fs, perc_threshold=75, nperseg=256):
+    """
+    Detect outliers in a signal using Short Fourier Transform.
+
+    Parameters:
+        signal (np.array): The signal array.
+        fs (int or float): Sampling frequency.
+        perc_threshold (int or float): Percentile threshold.
+        nperseg (int): Number of segments per window.
+
+    Returns:
+        outliers (np.array): Locations of the detected outliers.
+    """
     f, t, Zxx = stft(x=signal, fs=fs, nperseg=nperseg)
     magnitude = np.abs(Zxx)
     threshold = np.percentile(magnitude, perc_threshold)
