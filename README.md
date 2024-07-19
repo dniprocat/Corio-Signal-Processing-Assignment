@@ -32,20 +32,6 @@ The PPG and ECG signals were synchronized by aligning the detected peaks (pulses
 6. Signal Evaluation
 The PPG signals were evaluated based on signal quality metrics such as signal-to-noise ratio (SNR). The signals were then ordered from best to worst according to the chosen evaluation function. This process is described in the notebook and implemented in src/evaluation.py
 
-## Repository Structure
-
-.
-├── ECG-PPG processing.ipynb
-├── src
-│   ├── preprocessing.py
-│   ├── evaluation.py
-│   ├── analysis.py
-│   └── synchronization.py
-├── data
-│   └── *.npy (PPG/ECG signal files)
-├── README.md
-└── requirements.txt
-
 ## Results
 
 The results of the analysis, including preprocessing, pulse detection, anomaly detection, synchronization, and signal evaluation, are documented and visualized in the Jupyter Notebook `ECG-PPG processing.ipynb`.
